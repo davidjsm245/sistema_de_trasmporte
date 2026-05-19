@@ -1,35 +1,30 @@
-//server.j
+//server.js
 
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-//const db = require('./db'); // Importa la conexión a la base de datos
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
-//middleware
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-//Importar rutas
+// Importación de rutas
+const authRoutes = require('./routes/auth');
+const clienteRoutes = require('./routes/cliente');
 
-const authRoutes = require("./routes/auth");
-const almecenRoutes = require("./routes/almacen");
+// Usar rutas
+app.use('/api/auth', authRoutes);
+app.use('/api/cliente', clienteRoutes);
 
-//const { use } = require('react');
-
-//usa rutas
-
-app.use("/api/auth", authRoutes);
-app.use("/api/almacen", almecenRoutes);
-
-//ruta de prueba ejemplo
-app.get("/", (req, res) => {
-  res.send("Hola, esta es la ruta de prueba del servidor Express");
+// Ruta de ejemplo
+app.get('/', (req, res) => {
+    res.send('Hola desde el servidor express!');
 });
 
-//Iniciar el servidor
-app.listen(PORT, () => {
-  console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+// Iniciar servidor
+app.listen(port, () => {
+    console.log(`Servidor corriendo en el puerto ${port}`);
 });
