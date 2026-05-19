@@ -1,0 +1,45 @@
+
+AUTENTICACION
+
+URL: http://localhost:5000/api/auth/login
+DATOS JSON: 
+{
+    "email": "tes_gamer425@proton.me",
+    "password": "123456"
+
+}
+
+METODO GET UNICO
+
+URL: http://localhost:5000/api/empresa/id
+        
+METODO GET MULTIPLE
+
+URL: http://localhost:5000/api/almacen?page=1&string=&limit=10
+
+METODO POST 
+URL: http://localhost:5000/api/almacen
+DATOS JSON:
+{
+    "nombre": "",
+    "direccion": "",
+    "ciudad": "",
+    "capacidad_m3": "",
+    "id_empresa": "",
+    "estado": "",
+    "fecha_registro": ""
+}
+                
+METODO PUT 
+URL: http://localhost:5000/api/almacen/id
+DATOS JSON:
+{
+    
+    "nombre": "",
+    "direccion": "",
+    "ciudad": "",
+    "capacidad_m3": "",
+    "id_empresa": "",
+    "estado": "",
+    "fecha_registro": ""
+}
