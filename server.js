@@ -39,6 +39,7 @@ app.listen(port, () => {
 
 const authRoutes = require('./routes/auth');
 const empresaRoutes = require('./routes/empresa');
+const almecenRoutes = require("./routes/almacen");
 
 //const { use } = require('react');
 
