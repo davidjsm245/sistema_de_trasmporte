@@ -15,11 +15,13 @@ app.use(express.json());
 const authRoutes = require('./routes/auth');
 const clienteRoutes = require('./routes/cliente');
 const empresaRoutes = require('./routes/empresa');
+const almacenRoutes = require('./routes/almacen');
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
 app.use('/api/cliente', clienteRoutes);
 app.use('/api/empresa', empresaRoutes);
+app.use('/api/almacen', almacenRoutes);
 
 // Ruta principal
 app.get('/', (req, res) => {
