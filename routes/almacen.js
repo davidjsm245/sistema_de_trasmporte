@@ -60,7 +60,25 @@ router.get("/", verifyToken, (req, res) => {
     const totalPages = Math.ceil(totalAlmacenes / limit);
 
     //consulta para obtener los registros de la página
-    const almacenQuery = `select * from almacen ${whereClause} LIMIT ? OFFSET ?`;
+    //const almacenQuery = `select * from almacen ${whereClause} LIMIT ? OFFSET ?`;
+
+    const almacenQuery = `
+  SELECT 
+    a.id_almacen, 
+    a.nombre, 
+    a.direccion, 
+    a.ciudad, 
+    a.capacidad_m3, 
+    a.id_empresa, 
+    a.estado, 
+    a.fecha_registro, 
+    e.nombre AS nombre_empresa
+  FROM almacen a
+  INNER JOIN empresa e ON a.id_empresa = e.id_empresa
+  ${whereClause} 
+  LIMIT ? OFFSET ?`;
+
+
     queryParams.push(limit, offset);
     db.query(almacenQuery, queryParams, (err, almacenesResult) => {
       if (err) {
