@@ -8,7 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+// FRONTEND_URL se define en Render (ej: https://tu-frontend.vercel.app)
+// Si no existe la variable (ej: en local), permite cualquier origen.
+const corsOptions = process.env.FRONTEND_URL
+  ? { origin: process.env.FRONTEND_URL }
+  : {};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Importación de rutas
@@ -23,9 +28,9 @@ app.use('/api/cliente', clienteRoutes);
 app.use('/api/empresa', empresaRoutes);
 app.use('/api/almacen', almacenRoutes);
 
-// Ruta principal
+// Ruta principal (sirve para comprobar que el backend está vivo)
 app.get('/', (req, res) => {
-    res.send('Hola desde el servidor Express!');
+    res.send('API sistema_de_trasmporte funcionando correctamente');
 });
 
 // Iniciar servidor
